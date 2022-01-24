@@ -1,0 +1,39 @@
+<!-- chat/templates/chat/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Rooms</title>
+	<style type="text/css" media="screen">
+		body {
+			background-color: #333;
+			color: #ccc;
+		}
+	</style>
+</head>
+<body>
+    <input id="room-name-input" type="text" placeholder="Room name" style="margin-bottom: 10px"/><br>
+	<input type="text" value="" name="" id="username-input" placeholder="Username" style="margin-bottom: 10px"/><br>
+    <input id="room-name-submit" type="button" value="Enter"/>
+
+    <script>
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+		document.getElementById('username-input').onkeyup = e => {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+		}
+
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            var roomName = document.querySelector('#room-name-input').value;
+			let username = document.getElementById('username-input').value
+            window.location.pathname = '/chat/' + username + '/' + roomName + '/';
+        };
+    </script>
+</body>
+</html>

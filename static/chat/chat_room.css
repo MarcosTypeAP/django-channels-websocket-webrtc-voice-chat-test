@@ -1,0 +1,91 @@
+html {
+	/* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 13px;
+	background-color: #222;
+	color: #ccc;
+	margin: 0;
+}
+
+input {
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.chats {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	margin: 10px 0px;
+	min-height: 70vh;
+	max-height: 75vh;
+}
+
+.chat {
+	width: 46vw;
+	height: auto;
+	border: solid 4px #ccc;
+	border-radius: 5px;
+	margin: 0 auto;
+	padding: 10px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.chat-log {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	overflow-y: scroll;
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+
+.chat-log::-webkit-scrollbar {
+  display: none;
+}
+
+.message {
+    display: flex;
+	align-items: center;
+    margin: 10px 0 10px 0;
+	padding: 18px 12px;
+	max-height: 0px;
+	max-width: 85%;
+	border-radius: 10px;
+	overflow: hidden;
+	color: #000;
+}
+
+.msg-right {
+	justify-content: flex-end;
+	align-self: flex-end;
+	background-color: #7f4;
+}
+
+.msg-left {
+	justify-content: flex-start;
+	align-self: flex-start;
+	background-color: #2df;
+}
+
+#connection-states {
+	margin-left: 20px;
+}
+
+#connection-states .state {
+	margin-top: 5px;
+}
+
+.webrtc-connected-user-list-item {
+	display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+	margin-bottom: 20px;
+}
+
+.webrtc-connected-user-item {
+	margin-right: 10px;
+}

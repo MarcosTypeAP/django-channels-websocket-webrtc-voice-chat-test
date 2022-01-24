@@ -1,0 +1,7 @@
+#!/bin/sh
+
+redis-server --daemonize yes
+
+celery -A djangoChannelsTest.celery worker --loglevel info --detach
+
+daphne -e ssl:443:privateKey=certificate/key.pem:certKey=certificate/cert.pem djangoChannelsTest.asgi:application --port $PORT --bind 0.0.0.0 -v2

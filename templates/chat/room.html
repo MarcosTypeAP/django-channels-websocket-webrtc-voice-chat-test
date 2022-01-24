@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Room</title>
+	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+	<link rel="stylesheet" href="{% static 'chat/chat_room.css' %}" media="screen" />
+</head>
+<body>
+	<div class="chats">
+		<div id="chat-websocket" class="chat">
+			<div id="chat-log-websocket" class="chat-log">
+				{% for message in messages %}
+					{% if message.user == room_context.username %}
+						<p class="message msg-right">{{ message.content }}</p>	
+					{% else %}
+						<p class="message msg-left">{{ message.content }}</p>	
+					{% endif %}
+				{% endfor %}
+			</div>
+			<input id="chat-message-input-websocket" placeholder="WebSocket Message" class="chat-msg-input" type="text">
+		</div>
+
+		<div id="chat-webrtc" class="chat">
+			<div id="chat-log-webrtc" class="chat-log"></div>
+			<input id="chat-message-input-webrtc" placeholder="WebRTC Message" class="chat-msg-input" type="text">
+		</div>
+	</div>
+
+	<div id="webrtc-connection" class="webrtc-connection">
+		<input type="text" value="" placeholder="Username" name="" id="webrtc-connection-text" style="margin-left: 20px"/>
+		<input type="button" value="Connect" id="webrtc-connection-button"/>
+		<input type="button" value="Ping WebSocket" name="" id="ping-ws-btn"/>
+		<input type="button" value="Mute" id="webrtc-audio-mute"/>
+		<span style="margin-left: 10px">WebSocket Connection state:</span>
+		<span id="websocket-connection-state">--</span>
+		<br>
+		{% comment "" %}
+		<div id="connection-states">
+			<div class="state">
+				<span style="margin-right: 10px">WebSocket Connection state:</span>
+				<span id="websocket-connection-state">--</span>
+			</div>
+			<div class="state">
+				<span style="margin-right: 10px">WebRTC Connection state:</span>
+				<span id="webrtc-connection-state">--</span>
+			</div>
+			<div class="state">
+				<span style="margin-right: 10px">WebRTC ICE Connection state:</span>
+				<span id="webrtc-ice-connection-state">--</span>
+			</div>
+			<div class="state">
+				<span style="margin-right: 10px">WebRTC Data Channel state:</span>
+				<span id="webrtc-data-channel-state">--</span>
+			</div>
+		</div>
+		{% endcomment %}
+		<ul id="webrtc-connected-user-list">
+			{% comment %}
+			<li name="<username>" class="webrtc-connected-user-list-item">
+				<span class="webrtc-connected-user-item">username</span>
+				<audio class="webrtc-connected-user-item" autoplay></audio>
+				<input class="webrtc-connected-user-item" type="range" min="0" max="1" step="0.1" value="0.8" name="volume-control">
+				<input class="webrtc-connected-user-item" type="button" value="Ping WebRTC" name="ping-webrtc"/>
+				<span class="webrtc-connected-user-item">WebRTC Data Channel state:</span>
+				<span class="webrtc-connected-user-item" name="webrtc-data-channel-state">--</span>
+			</li>
+			{% endcomment %}
+		</ul>
+	</div>
+
+    {{ room_context|json_script:"render-context" }}
+	<script src="{% static 'chat/chat_room.js' %}" charset="utf-8"></script>
+</body>
+</html>
